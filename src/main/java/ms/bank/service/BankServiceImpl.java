@@ -3,9 +3,11 @@ package ms.bank.service;
 import ms.bank.model.Bank;
 import ms.bank.repository.IBankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@Service
 public class BankServiceImpl implements IBankService {
 
   @Autowired
@@ -56,7 +58,7 @@ public class BankServiceImpl implements IBankService {
     try {
       return bankRepository.findById(id).flatMap(bk -> {
         return bankRepository.delete(bk);
-      }).switchIfEmpty(Mono.error(new Exception("Bank not found")));
+      }).switchIfEmpty(Mono.empty());
     } catch (Exception e) {
       return Mono.error(e);
     }
