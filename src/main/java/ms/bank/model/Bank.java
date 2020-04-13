@@ -6,7 +6,6 @@ import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -17,7 +16,6 @@ public class Bank {
   @Id
   private String id;
   
-  @Indexed(unique = true)
   @NotEmpty(message = "Bank Name can not be empty")
   private String name;
   
